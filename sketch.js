@@ -26,6 +26,14 @@ const predictionResults = (error, results) => {
     return;
   }
   console.log("Prediction result:", results);
+  let predictedLabel = results[0].label;
+  stroke(255);
+  fill(0, 255, 0, 100);
+  ellipse(mouseX, mouseY, 24);
+  fill(255);
+  noStroke();
+  textAlign(CENTER, CENTER);
+  text(predictedLabel, mouseX, mouseY);
 };
 
 function setup() {
