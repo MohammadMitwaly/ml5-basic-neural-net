@@ -1,4 +1,5 @@
 let model;
+let envelope, wave;
 let modelOptions = {
   inputs: ["x", "y"],
   outputs: ["label"],
@@ -8,6 +9,12 @@ let modelOptions = {
 let targetNotation = "C";
 let trainingBtn;
 let programState = "collection";
+
+let notesLookupTable = {
+  C: 1046.502,
+  D: 1174.659,
+  E: 659.2551,
+};
 
 const modelIsTraining = (epoch, loss) => {
   console.log(
@@ -34,11 +41,23 @@ const predictionResults = (error, results) => {
   noStroke();
   textAlign(CENTER, CENTER);
   text(predictedLabel, mouseX, mouseY);
+  playNote(predictedLabel);
 };
 
 function setup() {
   createCanvas(800, 800);
   background(0);
+
+  // Set up to play notes
+  envelope = new p5.Envelope();
+  envelope.setADSR(0.05, 0.1, 0.5, 1);
+  envelope.setRange(1.2, 0);
+  wave = new p5.Oscillator();
+  wave.setType("sine");
+  wave.start();
+  wave.freq(440);
+  wave.amp(envelope);
+
   model = ml5.neuralNetwork(modelOptions);
   trainingBtn = createButton("Train the model!");
   trainingBtn.position(0, 0);
@@ -85,7 +104,13 @@ function mousePressed() {
     noStroke();
     textAlign(CENTER, CENTER);
     text(targetNotation, mouseX, mouseY);
+    playNote(targetNotation);
   } else if (programState === "prediction") {
     model.classify(dataPoint, predictionResults);
   }
+}
+
+function playNote(targetNotation) {
+  wave.freq(notesLookupTable[targetNotation]);
+  envelope.play();
 }
