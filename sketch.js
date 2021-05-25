@@ -1,4 +1,5 @@
 let model;
+let loadDataBtn, inputTrainingData;
 let envelope, wave;
 let modelOptions = {
   inputs: ["x", "y"],
@@ -7,7 +8,7 @@ let modelOptions = {
   debug: "true", // Make this toggleable by the user
 };
 let targetNotation = "C";
-let trainingBtn;
+let trainingBtn, saveDataBtn;
 let programState = "collection";
 
 let notesLookupTable = {
@@ -59,9 +60,17 @@ function setup() {
   wave.amp(envelope);
 
   model = ml5.neuralNetwork(modelOptions);
+
   trainingBtn = createButton("Train the model!");
   trainingBtn.position(0, 0);
   trainingBtn.mousePressed(trainModelWithUserData);
+
+  saveDataBtn = createButton("Save the data");
+  saveDataBtn.position(200, 0);
+  saveDataBtn.mousePressed(saveTrainingData);
+
+  loadDataBtn = createFileInput(handleDataLoading);
+  loadDataBtn.position(400, 0);
 }
 
 function trainModelWithUserData() {
@@ -71,6 +80,25 @@ function trainModelWithUserData() {
   model.normalizeData();
   programState = "training";
   model.train(trainingOptions, modelIsTraining, modelFinishedTraining);
+}
+
+function saveTrainingData() {
+  model.saveData("training-data");
+}
+
+function handleDataLoading(file) {
+  // JSONs have the type "application" in P5 for whatever reason
+  console.log(file);
+  if (file.type === "application") {
+    inputTrainingData = loadJSON(file.data);
+    model.loadData(inputTrainingData, dataLoaded);
+  } else {
+    inputTrainingData = null;
+  }
+}
+
+function dataLoaded() {
+  console.log("Data has loaded");
 }
 
 function keyPressed() {
