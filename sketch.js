@@ -73,6 +73,7 @@ function setup() {
   loadDataBtn.position(400, 0);
 }
 
+// This is an onClick function for the "trainingBtn"
 function trainModelWithUserData() {
   let trainingOptions = {
     epochs: 100,
@@ -82,21 +83,22 @@ function trainModelWithUserData() {
   model.train(trainingOptions, modelIsTraining, modelFinishedTraining);
 }
 
+// This is an onClick function for the "saveDataBtn"
 function saveTrainingData() {
   model.saveData("training-data");
 }
 
 function handleDataLoading(file) {
   // JSONs have the type "application" in P5 for whatever reason
-  console.log(file);
   if (file.type === "application") {
-    inputTrainingData = loadJSON(file.data);
-    model.loadData(inputTrainingData, dataLoaded);
+    model.loadData(file.data, dataLoaded);
   } else {
     inputTrainingData = null;
+    alert("Input training data must be in JSON format");
   }
 }
 
+// Callback function for loading the data file in the model
 function dataLoaded() {
   console.log("Data has loaded");
 }
