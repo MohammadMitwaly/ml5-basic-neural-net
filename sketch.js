@@ -12,9 +12,13 @@ let trainingBtn, saveDataBtn;
 let programState = "collection";
 
 let notesLookupTable = {
-  C: 1046.502,
-  D: 1174.659,
-  E: 659.2551,
+  C: 523.2511,
+  D: 293.6648,
+  E: 329.6276,
+  F: 349.2282,
+  G: 391.9954,
+  A: 466.1638,
+  B: 493.8833,
 };
 
 const modelIsTraining = (epoch, loss) => {
@@ -105,7 +109,16 @@ function dataLoaded() {
 
 function keyPressed() {
   if (programState === "collection") {
-    if (key === "d" || key === "e" || key === "c") {
+    // Covering the base western musical scale
+    if (
+      key === "c" ||
+      key === "d" ||
+      key === "e" ||
+      key === "f" ||
+      key === "g" ||
+      key === "a" ||
+      key === "b"
+    ) {
       targetNotation = key.toUpperCase();
     }
   }
