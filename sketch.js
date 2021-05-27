@@ -66,15 +66,12 @@ function setup() {
   model = ml5.neuralNetwork(modelOptions);
 
   trainingBtn = createButton("Train the model!");
-  trainingBtn.position(0, 0);
   trainingBtn.mousePressed(trainModelWithUserData);
 
   saveDataBtn = createButton("Save the data");
-  saveDataBtn.position(200, 0);
   saveDataBtn.mousePressed(saveTrainingData);
 
   loadDataBtn = createFileInput(handleDataLoading);
-  loadDataBtn.position(400, 0);
 }
 
 // This is an onClick function for the "trainingBtn"
