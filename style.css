@@ -1,9 +1,29 @@
 html,
 body {
+  font-family: "Farro", sans-serif;
   margin: 0;
   padding: 0;
-  font-family: "Farro", sans-serif;
 }
 canvas {
   display: block;
+}
+
+button {
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  margin: 5px;
+}
+button:hover,
+button:focus {
+  background-color: #b4f1ce;
+}
+
+input {
+  border-radius: 5%;
+  box-shadow: ;
+  padding: 5px;
+  margin: 5px;
 }
