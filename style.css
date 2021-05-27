@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: "Farro", sans-serif;
+  font-family: "Farro", monospace;
   margin: 0;
   padding: 0;
 }
@@ -15,6 +15,7 @@ button {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   padding: 5px;
   margin: 5px;
+  font-family: "Farro", monospace;
 }
 button:hover,
 button:focus {
