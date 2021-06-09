@@ -76,6 +76,8 @@ function setup() {
 
   debuggingToggle = createCheckbox("Debug training", true);
   debuggingToggle.changed(updateDebugStatus);
+
+  //TODO: Add input and button to change amount of epochs being trained
 }
 
 function updateDebugStatus() {
