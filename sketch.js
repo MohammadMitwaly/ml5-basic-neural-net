@@ -8,7 +8,7 @@ let modelOptions = {
   debug: "true", // Make this toggleable by the user
 };
 let targetNotation = "C";
-let trainingBtn, saveDataBtn;
+let trainingBtn, saveDataBtn, debuggingToggle;
 let programState = "collection";
 
 let notesLookupTable = {
@@ -72,6 +72,17 @@ function setup() {
   saveDataBtn.mousePressed(saveTrainingData);
 
   loadDataBtn = createFileInput(handleDataLoading);
+
+  debuggingToggle = createCheckbox("Debug training", true);
+  debuggingToggle.changed(updateDebugStatus);
+}
+
+function updateDebugStatus() {
+  if (this.checked()) {
+    modelOptions.debug = true;
+  } else {
+    modelOptions.debug = false;
+  }
 }
 
 // This is an onClick function for the "trainingBtn"
