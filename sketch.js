@@ -7,6 +7,7 @@ let modelOptions = {
   task: "classification",
   debug: "true", // Make this toggleable by the user
 };
+let trainingEpochs = 100;
 let targetNotation = "C";
 let trainingBtn, saveDataBtn, debuggingToggle;
 let programState = "collection";
@@ -88,7 +89,7 @@ function updateDebugStatus() {
 // This is an onClick function for the "trainingBtn"
 function trainModelWithUserData() {
   let trainingOptions = {
-    epochs: 100,
+    epochs: trainingEpochs,
   };
   model.normalizeData();
   programState = "training";
