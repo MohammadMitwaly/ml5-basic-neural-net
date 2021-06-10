@@ -5,11 +5,11 @@ let modelOptions = {
   inputs: ["x", "y"],
   outputs: ["label"],
   task: "classification",
-  debug: "true", // Make this toggleable by the user
+  debug: "true",
 };
 let trainingEpochs = 100;
 let targetNotation = "C";
-let trainingBtn, saveDataBtn, debuggingToggle;
+let trainingBtn, saveDataBtn, debuggingToggle, epochsInput;
 let programState = "collection";
 
 let notesLookupTable = {
@@ -78,6 +78,7 @@ function setup() {
   debuggingToggle.changed(updateDebugStatus);
 
   //TODO: Add input and button to change amount of epochs being trained
+  epochsInput = createInput(trainingEpochs);
 }
 
 function updateDebugStatus() {
@@ -90,6 +91,7 @@ function updateDebugStatus() {
 
 // This is an onClick function for the "trainingBtn"
 function trainModelWithUserData() {
+  trainingEpochs = parseInt(epochsInput.value(), 10);
   let trainingOptions = {
     epochs: trainingEpochs,
   };
@@ -116,6 +118,7 @@ function handleDataLoading(file) {
 // Callback function for loading the data file in the model
 function dataLoaded() {
   console.log("Data has loaded");
+  trainModelWithUserData();
 }
 
 function keyPressed() {
