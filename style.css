@@ -3,29 +3,47 @@ body {
   font-family: "Farro", monospace;
   margin: 0;
   padding: 0;
-  background-color: #1a936f;
+  color: white;
+  background-color: #7f7979;
   text-align: center;
 }
+/* Color pallete URL: https://coolors.co/030e11-1a936f-88d498-c6dabf-f3e9d2 */
 
 canvas {
   display: block;
 }
 
 button {
+  color: white;
+
   border-width: 0;
+  background-color: #74226c;
   outline: none;
   border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   padding: 5px;
   margin: 5px;
   font-family: "Farro", monospace;
 }
+
 button:hover,
 button:focus {
-  background-color: #b4f1ce;
+  background-color: #9c3c93;
 }
 
 input {
+  border-radius: 5%;
+  padding: 5px;
+  margin: 5px;
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px #f3e9d2b4;
+  padding: 5px;
+  margin: 5px;
+  font-family: "Farro", monospace;
+}
+
+input[type="file" i] {
   border-radius: 5%;
   padding: 5px;
   margin: 5px;

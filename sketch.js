@@ -52,7 +52,7 @@ const predictionResults = (error, results) => {
 
 function setup() {
   createCanvas(windowWidth, 500);
-  background("#030E11");
+  background("#000000");
 
   // Set up to play notes
   envelope = new p5.Envelope();
@@ -73,12 +73,25 @@ function setup() {
   saveDataBtn.mousePressed(saveTrainingData);
 
   loadDataBtn = createFileInput(handleDataLoading);
-
-  debuggingToggle = createCheckbox("Debug training", true);
+  loadDataBtn.style("border-width", "0");
+  loadDataBtn.style("outline", "none");
+  loadDataBtn.style("border-radius", "2px");
+  loadDataBtn.style("padding", "5px");
+  loadDataBtn.style("margin", "5px");
+  loadDataBtn.style("font-family", "'Farro', 'monospace'");
+  loadDataBtn.style("border-radius", "5%");
+  createElement("hr");
+  debuggingToggle = createCheckbox(
+    "Keep this checked to see how the model learns!",
+    true
+  );
   debuggingToggle.changed(updateDebugStatus);
 
   //TODO: Add input and button to change amount of epochs being trained
-  epochsInput = createInput(trainingEpochs);
+  createElement("label", "Amount of epochs:");
+  epochsInput = createInput(trainingEpochs.toString());
+
+  epochsInput.elt.placeholder = "Amount of epochs";
 }
 
 function updateDebugStatus() {
@@ -91,7 +104,8 @@ function updateDebugStatus() {
 
 // This is an onClick function for the "trainingBtn"
 function trainModelWithUserData() {
-  trainingEpochs = parseInt(epochsInput.value(), 10);
+  trainingEpochs =
+    epochsInput.value() > 0 ? parseInt(epochsInput.value(), 10) : 100;
   let trainingOptions = {
     epochs: trainingEpochs,
   };
