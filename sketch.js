@@ -51,8 +51,8 @@ const predictionResults = (error, results) => {
 };
 
 function setup() {
-  createCanvas(800, 800);
-  background(0);
+  createCanvas(windowWidth, 500);
+  background("#030E11");
 
   // Set up to play notes
   envelope = new p5.Envelope();
